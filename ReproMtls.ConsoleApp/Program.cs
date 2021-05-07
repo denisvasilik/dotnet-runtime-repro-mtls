@@ -59,6 +59,13 @@ namespace ReproMtls
             X509Certificate remoteCertificate,
             string[] acceptableIssuers)
         {
+            //
+            // * Is only called once when running on Linux and does *not* provide
+            //   acceptable issuers.
+            //
+            // * Is called twice when running on Windows and does provide
+            //   acceptable issuers.
+            //
             return localCertificates[0];
         }
 
