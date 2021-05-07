@@ -23,9 +23,7 @@ routine on Linux, it never returns
 `SecurityStatusPalErrorCode.CredentialsNeeded`. Instead it returns
 `SecurityStatusPalErrorCode.ContinueNeeded` which does not trigger
 `LocalCertificateSelectionCallback`. Hence, there's no second invocation of
-`LocalCertificateSelectionCallback`. This does not only affect the acceptable
-issuers, but also the connection information provided by the `SslStream` instance
-(e.g. IsMutuallyAuthenticated is never `true`).
+`LocalCertificateSelectionCallback`.
 
 ## Issue
 
