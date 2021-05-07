@@ -9,7 +9,7 @@ issue for the following system configuration.
 * .NET 5.0.201
 * OpenSSL 1.1.1f  31 Mar 2020
 
-## Short Analysis
+## Quick Analysis
 
 During debugging I figured out that on Windows the method
 [InitializeSecurityContext](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Windows.cs#L83)
