@@ -12,12 +12,14 @@ issue for the following system configuration.
 ## Short Analysis
 
 During debugging I figured out that on Windows the method
-[InitializeSecurityContext][InitializeSecurityContextWindows] returns
+[InitializeSecurityContext](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Windows.cs#L83)
+ returns
 `SecurityStatusPalErrorCode.CredentialsNeeded` (when appropriate). As a consequence,
 the `LocalCertificateSelectionCallback` is called a second time with proper content
 of acceptable issuers. When looking at the
-[InitializeSecurityContext][InitializeSecurityContextLinux] or
-[HandshakeInternal][HandshakeInternalLinux] routine on Linux, it never returns
+[InitializeSecurityContext](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Unix.cs#L33)
+or [HandshakeInternal](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Unix.cs#L99)
+routine on Linux, it never returns
 `SecurityStatusPalErrorCode.CredentialsNeeded`. Instead it returns
 `SecurityStatusPalErrorCode.ContinueNeeded` which does not trigger
 `LocalCertificateSelectionCallback`. Hence, there's no second invocation of
@@ -29,9 +31,4 @@ issuers, but also the connection information provided by the `SslStream` instanc
 
 This issue is discussed here:
 
-* [Unable to get acceptableIssuers from LocalCertificateSelectionCallback on Linux][IssueLink]
-
-[InitializeSecurityContextWindows]:(https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Windows.cs#L83)
-[InitializeSecurityContextLinux]:(https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Unix.cs#L33)
-[HandshakeInternalLinux]:(https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Security/src/System/Net/Security/SslStreamPal.Unix.cs#L99)
-[IssueLink]:(https://www.test.com)
+* [Unable to get acceptableIssuers from LocalCertificateSelectionCallback on Linux](https://www.github.com/)
