@@ -29,4 +29,4 @@ routine on Linux, it never returns
 
 This issue is discussed here:
 
-* [Unable to get acceptableIssuers from LocalCertificateSelectionCallback on Linux](https://www.github.com/)
+* [Unable to get acceptableIssuers from LocalCertificateSelectionCallback on Linux](https://github.com/dotnet/runtime/issues/52499)
