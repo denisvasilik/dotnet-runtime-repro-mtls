@@ -4,18 +4,19 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.Linq;
 
 namespace ReproMtls
 {
     class Program
     {
-        const String CertFilepath =  @"";
+        const String CertFilepath = "Resources/dummy-cert.pem";
 
-        const String KeyFilepath = @"";
+        const String KeyFilepath = "Resources/dummy-key.pem";
 
-        const String Hostname = "";
+        const String Hostname = "mail.denisvasilik.com";
 
-        const Int32 Port = 27015;
+        const Int32 Port = 443;
 
         static void Main(string[] args)
         {
@@ -66,6 +67,8 @@ namespace ReproMtls
             // * Is called twice when running on Windows and does provide
             //   acceptable issuers.
             //
+            acceptableIssuers.ToList().ForEach(a => Console.WriteLine(a));
+
             return localCertificates[0];
         }
 
